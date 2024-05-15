@@ -16,9 +16,6 @@ public class WidgetProvider extends AppWidgetProvider {
     public static final String ACTION_UPDATE_WIDGET = "com.example.sl_widget.UPDATE_WIDGET";
     public static final String EXTRA_WIDGET_DATA = "com.example.sl_widget.WIDGET_DATA";
 
-    private Timer timer = new Timer();
-    private boolean active = false;
-
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         for (int appWidgetId : appWidgetIds) {
@@ -55,7 +52,7 @@ public class WidgetProvider extends AppWidgetProvider {
                 try {
                     deps = Utility.getDepartures(data.split(":")[0], data.split(":")[1]);
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    System.out.println("Error: " + e);
                     return;
                 }
 
@@ -72,7 +69,7 @@ public class WidgetProvider extends AppWidgetProvider {
                     views.setTextViewText(R.id.main_text, deps[0].split(":")[0]);
                     views.setTextViewText(R.id.main_time, deps[0].split(":")[1]);
                     StringBuilder temp = new StringBuilder();
-                    for (int i = 0; i < Math.min(deps.length, 5); i++) {
+                    for (int i = 1; i < Math.min(deps.length, 6); i++) {
                         temp.append(deps[i].replace(":", " ")).append(" ");
                     }
                     views.setTextViewText(R.id.sub_text, temp.toString());

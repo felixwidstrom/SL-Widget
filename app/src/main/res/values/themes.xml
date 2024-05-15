@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base application theme -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Primary brand color -->
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorAccent">@color/black</item>
+
+        <!-- Customize your theme here -->
+        <item name="android:windowNoTitle">true</item> <!-- No title bar -->
+        <item name="android:windowActionBar">false</item> <!-- No ActionBar -->
+        <item name="android:windowFullscreen">false</item> <!-- Fullscreen mode -->
+        <item name="android:windowContentOverlay">@null</item> <!-- No overlay -->
+
+        <!-- Text and background colors -->
+        <item name="android:textColor">@color/black</item>
+        <item name="android:background">@color/white</item>
+
+        <!-- Status bar color (for Lollipop and above) -->
+        <item name="android:statusBarColor">@color/black</item>
+
+        <!-- Navigation bar color (for Lollipop and above) -->
+        <item name="android:navigationBarColor">@color/black</item>
+    </style>
+
+    <!-- Theme for activities without an ActionBar -->
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <!-- Theme for AppCompat dialogs -->
+    <style name="AppTheme.Dialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/black</item>
+    </style>
+</resources>

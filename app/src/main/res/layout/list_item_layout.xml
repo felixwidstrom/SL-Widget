@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/list_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Item Name"
+        android:textColor="@color/black"/>
+
+    <Button
+        android:id="@+id/list_button_bus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/list_text"
+        android:text="Bus"/>
+
+    <Button
+        android:id="@+id/list_button_metro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/list_text"
+        android:layout_toRightOf="@id/list_button_bus"
+        android:text="Metro"/>
+
+    <Button
+        android:id="@+id/list_button_train"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/list_text"
+        android:layout_toRightOf="@id/list_button_metro"
+        android:text="Train"/>
+
+    <Button
+        android:id="@+id/list_button_tram"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/list_text"
+        android:layout_toRightOf="@id/list_button_train"
+        android:text="Tram"/>
+
+    <Button
+        android:id="@+id/list_button_ship"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/list_text"
+        android:layout_toRightOf="@id/list_button_tram"
+        android:text="Ship"/>
+
+</RelativeLayout>

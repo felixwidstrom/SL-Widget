@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:background="@color/black">
+
+    <TextView
+        android:id="@+id/main_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:singleLine="true"
+        android:text="@string/main_text"
+        android:textSize="16sp"
+        android:textColor="@color/yellow"/>
+    <TextView
+        android:id="@+id/main_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:paddingLeft="12dp"
+        android:text="@string/main_time"
+        android:textSize="16sp"
+        android:textColor="@color/yellow"
+        android:background="@drawable/background_fade_out"/>
+    <TextView
+        android:id="@+id/sub_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/main_text"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:scrollHorizontally="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:text="@string/sub_text"
+        android:textSize="12sp"
+        android:textColor="@color/yellow">
+        <requestFocus
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:duplicateParentState="true"/>
+    </TextView>
+
+</RelativeLayout>

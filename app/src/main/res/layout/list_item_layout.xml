@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.flexbox.FlexboxLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:flexbox="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="horizontal"
+    android:gravity="center"
+    flexbox:flexWrap="wrap">
 
     <TextView
         android:id="@+id/list_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_margin="8dp"
         android:text="Item Name"
         android:textColor="@color/black"/>
 
@@ -15,39 +21,54 @@
         android:id="@+id/list_button_bus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="0dp"
+        android:layout_margin="0dp"
         android:layout_below="@id/list_text"
-        android:text="Bus"/>
+        android:text="Bus"
+        android:textSize="12sp"/>
 
     <Button
         android:id="@+id/list_button_metro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="0dp"
+        android:layout_margin="0dp"
         android:layout_below="@id/list_text"
-        android:layout_toRightOf="@id/list_button_bus"
-        android:text="Metro"/>
+        android:layout_toEndOf="@id/list_button_bus"
+        android:text="Metro"
+        android:textSize="12sp"/>
 
     <Button
         android:id="@+id/list_button_train"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="0dp"
+        android:layout_margin="0dp"
         android:layout_below="@id/list_text"
-        android:layout_toRightOf="@id/list_button_metro"
-        android:text="Train"/>
+        android:layout_toEndOf="@id/list_button_metro"
+        android:text="Train"
+        android:textSize="12sp"/>
 
     <Button
         android:id="@+id/list_button_tram"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="0dp"
+        android:layout_margin="0dp"
         android:layout_below="@id/list_text"
-        android:layout_toRightOf="@id/list_button_train"
-        android:text="Tram"/>
+        android:layout_toEndOf="@id/list_button_train"
+        android:text="Tram"
+        android:textSize="12sp"/>
 
     <Button
         android:id="@+id/list_button_ship"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="0dp"
+        android:layout_margin="0dp"
         android:layout_below="@id/list_text"
-        android:layout_toRightOf="@id/list_button_tram"
-        android:text="Ship"/>
+        android:layout_toEndOf="@id/list_button_tram"
+        android:text="Ship"
+        android:textSize="12sp"/>
 
-</RelativeLayout>
+</com.google.android.flexbox.FlexboxLayout>

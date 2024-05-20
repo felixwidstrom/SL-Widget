@@ -6,6 +6,7 @@ import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.widget.RemoteViews;
 
 import java.io.IOException;
@@ -35,6 +36,7 @@ public class WidgetProvider extends AppWidgetProvider {
 
         if (ACTION_UPDATE_WIDGET.equals(intent.getAction())) {
             String data = intent.getStringExtra(EXTRA_WIDGET_DATA);
+            savePref(context, data);
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
             ComponentName componentName = new ComponentName(context, WidgetProvider.class);
             int[] appWidgetIds = appWidgetManager.getAppWidgetIds(componentName);
@@ -42,15 +44,24 @@ public class WidgetProvider extends AppWidgetProvider {
             TimerTask update = updateAppWidget(context, appWidgetManager, appWidgetIds, data);
             timerManager.startTimer(update, 100, 60000);
         }
+
+        if (Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction())) {
+            Intent newIntent = new Intent(context, WidgetProvider.class);
+            newIntent.setAction(WidgetProvider.ACTION_UPDATE_WIDGET);
+            newIntent.putExtra(WidgetProvider.EXTRA_WIDGET_DATA, loadPref(context));
+            context.sendBroadcast(newIntent);
+        }
     }
 
-    private TimerTask updateAppWidget(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds, String data){
+    private TimerTask updateAppWidget(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds, String data) {
         return new TimerTask() {
             @Override
             public void run() {
-                String[] deps;
+                String[] deps = new String[0];
                 try {
-                    deps = Utility.getDepartures(data.split(":")[0], data.split(":")[1]);
+                    if (!data.equals("")) {
+                        deps = Utility.getDepartures(data.split(":")[0], data.split(":")[1]);
+                    }
                 } catch (IOException e) {
                     System.out.println("Error: " + e);
                     return;
@@ -68,11 +79,11 @@ public class WidgetProvider extends AppWidgetProvider {
                 } else {
                     views.setTextViewText(R.id.main_text, deps[0].split(":")[0]);
                     views.setTextViewText(R.id.main_time, deps[0].split(":")[1]);
-                    StringBuilder temp = new StringBuilder();
+                    StringBuilder sb = new StringBuilder();
                     for (int i = 1; i < Math.min(deps.length, 6); i++) {
-                        temp.append(deps[i].replace(":", " ")).append(" ");
+                        sb.append(deps[i].replace(":", " ")).append(" ");
                     }
-                    views.setTextViewText(R.id.sub_text, temp.toString());
+                    views.setTextViewText(R.id.sub_text, sb.toString());
                 }
 
                 for (int appWidgetId : appWidgetIds) {
@@ -80,5 +91,16 @@ public class WidgetProvider extends AppWidgetProvider {
                 }
             }
         };
+    }
+
+    private void savePref(Context context, String text) {
+        SharedPreferences.Editor prefs = context.getSharedPreferences("com.example.sl_widget.Prefs", 0).edit();
+        prefs.putString("state", text);
+        prefs.apply();
+    }
+
+    private String loadPref(Context context) {
+        SharedPreferences prefs = context.getSharedPreferences("com.example.sl_widget.Prefs", 0);
+        return prefs.getString("state", "");
     }
 }

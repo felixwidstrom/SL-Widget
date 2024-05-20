@@ -30,7 +30,7 @@ public class Utility {
     }
 
     public static String[] filter(String[] array, String query) {
-        return Arrays.stream(array).filter(s -> s.contains(query)).sorted().toArray(String[]::new);
+        return Arrays.stream(array).filter(s -> s.toLowerCase().contains(query.toLowerCase())).sorted().toArray(String[]::new);
     }
 
     public static String[] getDepartures(String siteId, String mode) throws IOException {

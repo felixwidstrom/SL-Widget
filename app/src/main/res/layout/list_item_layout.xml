@@ -1,74 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.flexbox.FlexboxLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:flexbox="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
-    android:orientation="horizontal"
-    android:gravity="center"
-    flexbox:flexWrap="wrap">
+    android:padding="8dp"
+    android:background="@color/transparent">
 
-    <TextView
-        android:id="@+id/list_text"
+    <androidx.cardview.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:text="Item Name"
-        android:textColor="@color/black"/>
+        card_view:cardCornerRadius="16dp">
 
-    <Button
-        android:id="@+id/list_button_bus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="0dp"
-        android:layout_margin="0dp"
-        android:layout_below="@id/list_text"
-        android:text="Bus"
-        android:textSize="12sp"/>
+        <com.google.android.flexbox.FlexboxLayout
+            xmlns:flexbox="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            flexbox:flexWrap="wrap"
+            android:background="@color/dark_grey_300">
 
-    <Button
-        android:id="@+id/list_button_metro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="0dp"
-        android:layout_margin="0dp"
-        android:layout_below="@id/list_text"
-        android:layout_toEndOf="@id/list_button_bus"
-        android:text="Metro"
-        android:textSize="12sp"/>
+            <TextView
+                android:id="@+id/list_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="Item Name"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:background="@color/transparent"/>
 
-    <Button
-        android:id="@+id/list_button_train"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="0dp"
-        android:layout_margin="0dp"
-        android:layout_below="@id/list_text"
-        android:layout_toEndOf="@id/list_button_metro"
-        android:text="Train"
-        android:textSize="12sp"/>
+            <Button
+                android:id="@+id/list_button_bus"
+                style="@style/CustomButton"
+                android:layout_below="@id/list_text"
+                android:text="Bus" />
 
-    <Button
-        android:id="@+id/list_button_tram"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="0dp"
-        android:layout_margin="0dp"
-        android:layout_below="@id/list_text"
-        android:layout_toEndOf="@id/list_button_train"
-        android:text="Tram"
-        android:textSize="12sp"/>
+            <Button
+                android:id="@+id/list_button_metro"
+                style="@style/CustomButton"
+                android:layout_below="@id/list_text"
+                android:layout_toEndOf="@id/list_button_bus"
+                android:text="Metro" />
 
-    <Button
-        android:id="@+id/list_button_ship"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="0dp"
-        android:layout_margin="0dp"
-        android:layout_below="@id/list_text"
-        android:layout_toEndOf="@id/list_button_tram"
-        android:text="Ship"
-        android:textSize="12sp"/>
+            <Button
+                android:id="@+id/list_button_train"
+                style="@style/CustomButton"
+                android:layout_below="@id/list_text"
+                android:layout_toEndOf="@id/list_button_metro"
+                android:text="Train" />
 
-</com.google.android.flexbox.FlexboxLayout>
+            <Button
+                android:id="@+id/list_button_tram"
+                style="@style/CustomButton"
+                android:layout_below="@id/list_text"
+                android:layout_toEndOf="@id/list_button_train"
+                android:text="Tram"/>
+
+            <Button
+                android:id="@+id/list_button_ship"
+                style="@style/CustomButton"
+                android:layout_below="@id/list_text"
+                android:layout_toEndOf="@id/list_button_tram"
+                android:text="Ship"/>
+        </com.google.android.flexbox.FlexboxLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

@@ -45,7 +45,7 @@ public class WidgetProvider extends AppWidgetProvider {
             timerManager.startTimer(update, 100, 60000);
         }
 
-        if (Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction())) {
+        if (Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction()) || Intent.ACTION_USER_PRESENT.equals(intent.getAction())) {
             Intent newIntent = new Intent(context, WidgetProvider.class);
             newIntent.setAction(WidgetProvider.ACTION_UPDATE_WIDGET);
             newIntent.putExtra(WidgetProvider.EXTRA_WIDGET_DATA, loadPref(context));

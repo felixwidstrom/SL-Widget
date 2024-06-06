@@ -45,7 +45,12 @@ public class WidgetProvider extends AppWidgetProvider {
             timerManager.startTimer(update, 100, 60000);
         }
 
-        if (Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction()) || Intent.ACTION_SCREEN_ON.equals(intent.getAction())) {
+        if (
+                Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction()) ||
+                Intent.ACTION_SCREEN_ON.equals(intent.getAction()) ||
+                Intent.ACTION_USER_PRESENT.equals(intent.getAction()) ||
+                Intent.ACTION_DREAMING_STOPPED.equals(intent.getAction())
+        ) {
             Intent newIntent = new Intent(context, WidgetProvider.class);
             newIntent.setAction(WidgetProvider.ACTION_UPDATE_WIDGET);
             newIntent.putExtra(WidgetProvider.EXTRA_WIDGET_DATA, loadPref(context));
@@ -59,7 +64,7 @@ public class WidgetProvider extends AppWidgetProvider {
             public void run() {
                 String[] deps = new String[0];
                 try {
-                    if (!data.equals("")) {
+                    if (!data.isEmpty()) {
                         deps = Utility.getDepartures(data.split(":")[0], data.split(":")[1]);
                     }
                 } catch (IOException e) {
@@ -70,8 +75,8 @@ public class WidgetProvider extends AppWidgetProvider {
                 RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
                 if (deps.length == 0) {
                     views.setTextViewText(R.id.main_text, "---");
-                    views.setTextViewText(R.id.sub_text, "No departures found");
                     views.setTextViewText(R.id.main_time, "- min");
+                    views.setTextViewText(R.id.sub_text, "No departures found");
                 } else if (deps.length == 1) {
                     views.setTextViewText(R.id.main_text, deps[0].split(":")[0]);
                     views.setTextViewText(R.id.main_time, deps[0].split(":")[1]);

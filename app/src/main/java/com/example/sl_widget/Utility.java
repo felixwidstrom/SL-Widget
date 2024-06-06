@@ -57,10 +57,9 @@ public class Utility {
     static String getData(String urlString) {
         StringBuilder sb = new StringBuilder();
         CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> {
-            HttpURLConnection con = null;
             try {
                 URL url = new URL(urlString);
-                con = (HttpURLConnection) url.openConnection();
+                HttpURLConnection con = (HttpURLConnection) url.openConnection();
                 con.setRequestMethod("GET");
                 con.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
                 try (BufferedReader reader = new BufferedReader(new InputStreamReader(con.getInputStream()))) {
